@@ -1,4 +1,4 @@
-import { FirestoreDate } from './firestore/FirestoreDate';
+import { FirestoreDate } from './FirestoreDate';
 
 export class DateTranslator {
   private _date!: Date;

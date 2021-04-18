@@ -1,4 +1,4 @@
-import { DateTranslator } from './../DateTranslator';
+import { DateTranslator } from './../firestore/DateTranslator';
 import { FirestoreBase } from '../firestore/FirestoreBase';
 import { FirestoreCollection } from '../firestore/FirestoreCollection';
 import { FirestoreBook } from '../bookshelf/FirestoreBook';

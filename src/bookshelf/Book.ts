@@ -1,6 +1,6 @@
 import { FirestoreBook } from './FirestoreBook';
 import { Shelf } from './Shelf';
-import { DateTranslator } from '../DateTranslator';
+import { DateTranslator } from '../firestore/DateTranslator';
 
 export class Book {
   private _id: string;
