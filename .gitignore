@@ -1,6 +1,10 @@
 /lib
 /coverage
 
+firebase.config.ts
+
+*.pdf
+
 # Logs
 logs
 *.log
