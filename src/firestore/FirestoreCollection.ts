@@ -1,4 +1,9 @@
 import { FirestoreBase } from './FirestoreBase';
+
+interface WithId {
+  id: string;
+}
+
 export class FirestoreCollection<FirebaseRecord, LocalRecord> {
   private _baseFirestore: FirestoreBase;
   private _collection: string;
@@ -22,8 +27,13 @@ export class FirestoreCollection<FirebaseRecord, LocalRecord> {
     return localRecords;
   }
 
-  async getById(id: string): Promise<LocalRecord> {
+  private async docById(id: string) {
     const recordRef = await this.collection().doc(id);
+    return recordRef;
+  }
+
+  async getById(id: string): Promise<LocalRecord> {
+    const recordRef = await this.docById(id);
     const record = await recordRef.get();
     return this._dtoMapper(({ id: record.id, ...record.data() } as unknown) as FirebaseRecord);
   }
@@ -32,5 +42,19 @@ export class FirestoreCollection<FirebaseRecord, LocalRecord> {
     const ref = await this.collection().add(record);
     const result = await this.getById(ref.id);
     return result;
+  }
+
+  async update(record: FirebaseRecord): Promise<LocalRecord> {
+    if (!this.isValidRecord(record)) {
+      throw new Error('Cannot update record without an ID');
+    }
+    const id = (record as unknown as WithId).id;
+    const recordRef = await this.docById(id);
+    await recordRef.update(record)
+    return await this.getById(id);
+  }
+
+  private isValidRecord(record: FirebaseRecord): boolean {
+    return (record as unknown as WithId).id !== undefined;
   }
 }

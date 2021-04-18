@@ -96,4 +96,29 @@ export class Book {
     this._dateFinished = new DateTranslator().now().toDate();
     this._onPage = this._numPages;
   }
+
+  toDTO(): FirestoreBook {
+    let sDate = null;
+    if (this._dateStarted) {
+      sDate = new DateTranslator().fromDate(this._dateStarted).toFirestoreDate();
+    }
+    let fDate = null;
+    if (this._dateFinished) {
+      fDate = new DateTranslator().fromDate(this._dateFinished).toFirestoreDate();
+    }
+    return {
+      id: this._id,
+      isbn13: this._isbn13,
+      title: this._title,
+      shortTitle: this._shortTitle,
+      authors: this._authors,
+      numPages: this._numPages,
+      link: this._id,
+      shelf: this._shelf,
+      onPage: this._onPage,
+      dateStarted: sDate,
+      dateFinished: fDate,
+      rating: this._rating,
+    }
+  }
 }

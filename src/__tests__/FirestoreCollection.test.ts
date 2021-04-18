@@ -41,7 +41,7 @@ describe('FirestoreCollection', () => {
       link: 'my_url.com',
       shelf: Shelf.TOREAD,
       onPage: 0,
-      dateStarted: new DateTranslator().now().toFirestoreDate(),
+      dateStarted: null,
       dateFinished: null,
       rating: null,
     };
@@ -85,9 +85,20 @@ describe('FirestoreCollection', () => {
 
     it('updates the book fields', async () => {
       if (!testingBookId) throw new Error('testingBookId is not set');
-      const book = await booksCollection.getById(testingBookId);
+      let book = await booksCollection.getById(testingBookId);
+      expect(book.dateStarted).toBeFalsy();
+      expect(book.shelf).toEqual(Shelf.TOREAD);
       book.startReading();
-      // TODO: This
+      book = await booksCollection.update(book.toDTO());
+      expect(book).toBeDefined();
+      expect(book.dateStarted).toBeTruthy();
+      expect(book.shelf).toEqual(Shelf.CURRENTLYREADING);
+      expect(book.dateFinished).toBeFalsy();
+      book.finishedReading();
+      expect(book).toBeDefined();
+      expect(book.dateFinished).toBeTruthy();
+      expect(book.shelf).toEqual(Shelf.READ);
+      expect(book.onPage).toEqual(book.numPages);
     });
   });
 });
