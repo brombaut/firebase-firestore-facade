@@ -119,6 +119,6 @@ export class Book {
       dateStarted: sDate,
       dateFinished: fDate,
       rating: this._rating,
-    }
+    };
   }
 }

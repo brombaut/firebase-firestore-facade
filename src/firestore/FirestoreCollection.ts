@@ -48,7 +48,7 @@ export class FirestoreCollection<FirebaseRecord, LocalRecord> {
     if (!this.isValidRecord(record)) {
       throw new Error('Cannot update record without an ID');
     }
-    const id = (record as unknown as WithId).id;
+    const id = ((record as unknown) as WithId).id;
     const recordRef = await this.docById(id);
     await recordRef.update(record);
     return await this.getById(id);
@@ -60,6 +60,6 @@ export class FirestoreCollection<FirebaseRecord, LocalRecord> {
   }
 
   private isValidRecord(record: FirebaseRecord): boolean {
-    return (record as unknown as WithId).id !== undefined;
+    return ((record as unknown) as WithId).id !== undefined;
   }
 }
