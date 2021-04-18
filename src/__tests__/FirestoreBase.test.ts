@@ -1,10 +1,18 @@
-import { FirestoreBase } from '../FirestoreBase';
-import { firebaseConfig } from '../firebase.config';
+import { FirestoreBase } from '../firestore/FirestoreBase';
+import { firebaseConfig } from '../firestore/firebase.config';
 
 describe('FirestoreBase', () => {
+  let base: FirestoreBase;
+  beforeAll(() => {
+    base = new FirestoreBase(firebaseConfig);
+  });
+
+  afterAll(() => {
+    base.closeConnection();
+  });
+
   it('inits', () => {
-    const myFirestore = new FirestoreBase(firebaseConfig);
-    expect(myFirestore).toBeDefined()
-    expect(myFirestore.db()).toBeDefined()
+    expect(base).toBeDefined();
+    expect(base.db()).toBeDefined();
   });
 });

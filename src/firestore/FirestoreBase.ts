@@ -29,11 +29,13 @@ export class FirestoreBase {
     return this._db;
   }
 
-  private collectionReference(collection: string): firebase.firestore.CollectionReference<firebase.firestore.DocumentData> {
+  collectionReference(collection: string): firebase.firestore.CollectionReference<firebase.firestore.DocumentData> {
     return this._db.collection(collection);
   }
 
-  private async collectionSnapshot(collection: string): Promise<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>> {
+  private async collectionSnapshot(
+    collection: string,
+  ): Promise<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>> {
     const cReference = this.collectionReference(collection);
     const cSnapshot = await cReference.get();
     return cSnapshot;
@@ -42,17 +44,17 @@ export class FirestoreBase {
   async collectionSnapshotData<T>(collection: string): Promise<T[]> {
     const cSnapshot = await this.collectionSnapshot(collection);
     const data: T[] = cSnapshot.docs.map((doc) => {
-      const result = {
+      const result = ({
         id: doc.id,
         ...doc.data(),
-      } as unknown as T;
-      return result
+      } as unknown) as T;
+      return result;
     });
     return data;
   }
 
-  
-
-
-
+  closeConnection(): void {
+    firebase.firestore().terminate();
+    firebase.firestore().clearPersistence();
+  }
 }
