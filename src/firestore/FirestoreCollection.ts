@@ -50,8 +50,13 @@ export class FirestoreCollection<FirebaseRecord, LocalRecord> {
     }
     const id = (record as unknown as WithId).id;
     const recordRef = await this.docById(id);
-    await recordRef.update(record)
+    await recordRef.update(record);
     return await this.getById(id);
+  }
+
+  async deleteById(id: string): Promise<void> {
+    const recordRef = await this.docById(id);
+    await recordRef.delete();
   }
 
   private isValidRecord(record: FirebaseRecord): boolean {

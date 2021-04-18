@@ -113,7 +113,7 @@ export class Book {
       shortTitle: this._shortTitle,
       authors: this._authors,
       numPages: this._numPages,
-      link: this._id,
+      link: this._link,
       shelf: this._shelf,
       onPage: this._onPage,
       dateStarted: sDate,

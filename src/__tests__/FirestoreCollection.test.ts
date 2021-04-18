@@ -100,5 +100,13 @@ describe('FirestoreCollection', () => {
       expect(book.shelf).toEqual(Shelf.READ);
       expect(book.onPage).toEqual(book.numPages);
     });
+
+    it('deletes the book', async () => {
+      if (!testingBookId) throw new Error('testingBookId is not set');
+      await booksCollection.deleteById(testingBookId);
+      const books = await booksCollection.get();
+      const bookIdIsInList = books.findIndex((book: Book) => book.id === testingBookId) > -1;
+      expect(bookIdIsInList).toBeFalsy();
+    });
   });
 });
