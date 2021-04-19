@@ -11,14 +11,14 @@ describe('FirestoreCollection', () => {
   let booksCollection: FirestoreCollection<FirestoreBook, Book>;
   let mapper: (o: FirestoreBook) => Book;
 
-  beforeAll(() => {
-    base = new FirestoreBase(firebaseConfig);
+  beforeAll(async () => {
+    base = await new FirestoreBase(firebaseConfig).init();
     mapper = (o: FirestoreBook) => new Book(o);
     booksCollection = new FirestoreCollection<FirestoreBook, Book>(base, 'books', mapper);
   });
 
-  afterAll(() => {
-    base.closeConnection();
+  afterAll(async () => {
+    await base.close();
   });
 
   it('inits', async () => {

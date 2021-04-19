@@ -13,15 +13,20 @@ export class FirestoreBase {
 
   constructor(firebaseConfig: Record<string, string>) {
     this._firebaseConfig = firebaseConfig;
-    this.initApp();
-    this.initFirestore();
   }
 
-  initApp(): void {
+  async init(): Promise<FirestoreBase> {
+    await this.close();
+    this.initApp();
+    this.initFirestore();
+    return this;
+  }
+
+  private initApp(): void {
     this._app = firebase.initializeApp(this._firebaseConfig);
   }
 
-  initFirestore(): void {
+  private initFirestore(): void {
     this._db = firebase.firestore();
   }
 
@@ -53,7 +58,14 @@ export class FirestoreBase {
     return data;
   }
 
-  closeConnection(): void {
+  async close(): Promise<void> {
+    if (firebase.apps.length > 0) {
+      this.closeFirstoreConnection();
+      await firebase.app().delete();
+    }
+  }
+
+  private closeFirstoreConnection(): void {
     firebase.firestore().terminate();
     firebase.firestore().clearPersistence();
   }
