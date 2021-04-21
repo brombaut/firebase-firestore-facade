@@ -1,6 +1,6 @@
 import { FirestoreBook } from './FirestoreBook';
 import { Shelf } from './Shelf';
-import { DateTranslator } from '../firestore/DateTranslator';
+import { FirestoreDateTranslator } from '../firestore/FirestoreDateTranslator';
 
 export class Book {
   private _id: string;
@@ -30,12 +30,12 @@ export class Book {
     this._shelf = dto.shelf;
     this._onPage = dto.onPage;
     if (dto.dateStarted) {
-      this._dateStarted = new DateTranslator().fromFirestoreDate(dto.dateStarted).toDate();
+      this._dateStarted = new FirestoreDateTranslator().fromFirestoreDate(dto.dateStarted).toDate();
     } else {
       this._dateStarted = null;
     }
     if (dto.dateFinished) {
-      this._dateFinished = new DateTranslator().fromFirestoreDate(dto.dateFinished).toDate();
+      this._dateFinished = new FirestoreDateTranslator().fromFirestoreDate(dto.dateFinished).toDate();
     } else {
       this._dateFinished = null;
     }
@@ -84,7 +84,7 @@ export class Book {
       throw new Error('Book has already been read');
     }
     this._shelf = Shelf.CURRENTLYREADING;
-    this._dateStarted = new DateTranslator().now().toDate();
+    this._dateStarted = new FirestoreDateTranslator().now().toDate();
     this._onPage = 0;
   }
 
@@ -93,18 +93,18 @@ export class Book {
       throw new Error('Book is not currently being read');
     }
     this._shelf = Shelf.READ;
-    this._dateFinished = new DateTranslator().now().toDate();
+    this._dateFinished = new FirestoreDateTranslator().now().toDate();
     this._onPage = this._numPages;
   }
 
   toDTO(): FirestoreBook {
     let sDate = null;
     if (this._dateStarted) {
-      sDate = new DateTranslator().fromDate(this._dateStarted).toFirestoreDate();
+      sDate = new FirestoreDateTranslator().fromDate(this._dateStarted).toFirestoreDate();
     }
     let fDate = null;
     if (this._dateFinished) {
-      fDate = new DateTranslator().fromDate(this._dateFinished).toFirestoreDate();
+      fDate = new FirestoreDateTranslator().fromDate(this._dateFinished).toFirestoreDate();
     }
     return {
       id: this._id,

@@ -1,9 +1,9 @@
-import { DateTranslator } from './../firestore/DateTranslator';
+import { FirestoreDateTranslator } from './../firestore/FirestoreDateTranslator';
 import { FirestoreBase } from '../firestore/FirestoreBase';
 import { FirestoreCollection } from '../firestore/FirestoreCollection';
 import { FirestoreBook } from '../bookshelf/FirestoreBook';
 import { Book } from '../bookshelf/Book';
-import { firebaseConfig } from '../firestore/firebase.config';
+import { firebaseConfig } from '../bookshelf/firebase.config';
 import { Shelf } from '../bookshelf/Shelf';
 
 describe('FirestoreCollection', () => {
@@ -59,11 +59,11 @@ describe('FirestoreCollection', () => {
       expect(newBook.shelf).toEqual(testingBook.shelf);
       expect(newBook.onPage).toEqual(testingBook.onPage);
       const sDate = testingBook.dateStarted
-        ? new DateTranslator().fromFirestoreDate(testingBook.dateStarted).toDate()
+        ? new FirestoreDateTranslator().fromFirestoreDate(testingBook.dateStarted).toDate()
         : null;
       expect(newBook.dateStarted).toEqual(sDate);
       const fDate = testingBook.dateFinished
-        ? new DateTranslator().fromFirestoreDate(testingBook.dateFinished).toDate()
+        ? new FirestoreDateTranslator().fromFirestoreDate(testingBook.dateFinished).toDate()
         : null;
       expect(newBook.dateFinished).toEqual(fDate);
       expect(newBook.rating).toEqual(testingBook.rating);

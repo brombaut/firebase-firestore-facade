@@ -6,6 +6,6 @@
     "outDir": "./lib",
     "strict": true
   },
-  "include": ["src/firestore"],
+  "include": ["src/firestore", "src/bookshelf/firebase.config.ts"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

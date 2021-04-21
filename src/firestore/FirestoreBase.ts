@@ -5,13 +5,14 @@ import firebase from 'firebase/app';
 // Add the Firebase services that you want to use
 import 'firebase/auth';
 import 'firebase/firestore';
+import { FirebaseConfigurer } from "./FirebaseConfigurer";
 
 export class FirestoreBase {
-  private _firebaseConfig: Record<string, string>;
+  private _firebaseConfig: FirebaseConfigurer;
   private _app!: firebase.app.App;
   private _db!: firebase.firestore.Firestore;
 
-  constructor(firebaseConfig: Record<string, string>) {
+  constructor(firebaseConfig: FirebaseConfigurer) {
     this._firebaseConfig = firebaseConfig;
   }
 
@@ -46,6 +47,7 @@ export class FirestoreBase {
     return cSnapshot;
   }
 
+  // TODO: Is this T needed?
   async collectionSnapshotData<T>(collection: string): Promise<T[]> {
     const cSnapshot = await this.collectionSnapshot(collection);
     const data: T[] = cSnapshot.docs.map((doc) => {

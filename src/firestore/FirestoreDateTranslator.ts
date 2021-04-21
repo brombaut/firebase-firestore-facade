@@ -1,14 +1,14 @@
 import { FirestoreDate } from './FirestoreDate';
 
-export class DateTranslator {
+export class FirestoreDateTranslator {
   private _date!: Date;
 
-  now(): DateTranslator {
+  now(): FirestoreDateTranslator {
     this._date = new Date();
     return this;
   }
 
-  fromDate(date: Date): DateTranslator {
+  fromDate(date: Date): FirestoreDateTranslator {
     this._date = date;
     return this;
   }
@@ -17,7 +17,7 @@ export class DateTranslator {
     return this._date;
   }
 
-  fromFirestoreDate(date: FirestoreDate): DateTranslator {
+  fromFirestoreDate(date: FirestoreDate): FirestoreDateTranslator {
     this._date = new Date(date.seconds * 1000);
     return this;
   }
