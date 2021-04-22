@@ -1,9 +1,8 @@
-import { FirebaseConfigurer } from "./../firestore/FirebaseConfigurer";
+import { FirebaseConfigurer } from './../firestore/FirebaseConfigurer';
 import { firebaseConfig } from '../bookshelf/firebase.config';
 import { FirestoreBase } from '../firestore/FirestoreBase';
 
 describe('FirestoreBase', () => {
-
   it('inits', async () => {
     const base = await new FirestoreBase(firebaseConfig).init();
     expect(base).toBeDefined();
@@ -30,10 +29,12 @@ describe('FirestoreBase', () => {
       storageBucket: '',
       messagingSenderId: '',
       appId: '',
-      measurementId: ''
-    }
+      measurementId: '',
+    };
     expect(() => {
       new FirestoreBase(invalidConfig);
-    }).toThrow('Invalid Firebase config fields: [apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId]');
+    }).toThrow(
+      'Invalid Firebase config fields: [apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId]',
+    );
   });
 });
