@@ -4,8 +4,10 @@
 ![npm](https://img.shields.io/npm/v/firebase-firestore-facade)
 ![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
 
-<h3> 🚧  WIP 🚧 </h3>
 <h2>Installing</h2>
+
+<hr>
+
 <p>
 
 For the latest version:
@@ -17,6 +19,8 @@ npm i firebase-firestore-facade
 ```
 
 <h2>Modules</h2>
+
+<hr>
 
 <h4><b>F3Interfacer</b></h4>
 
@@ -122,6 +126,8 @@ interface FirebaseConfigurer {
 ```
 
 <h2>Recommended Usage</h2>
+
+<hr>
 
 <h3><b>Example - Bookshelf</b></h3>
 
