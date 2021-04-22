@@ -1,4 +1,5 @@
 <h1>F3 - Firebase Firestore Facade</h1>
+
 ![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)
 
 <h3> 🚧  WIP 🚧 </h3>
