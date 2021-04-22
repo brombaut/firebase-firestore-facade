@@ -21,7 +21,7 @@ export class Book implements ILocalType {
     if (!dto.id) {
       throw new Error('DTO does not have an ID');
     }
-    this._id = dto.id as string;
+    this._id = dto.id;
     this._isbn13 = dto.isbn13;
     this._title = dto.title;
     this._shortTitle = dto.shortTitle;
