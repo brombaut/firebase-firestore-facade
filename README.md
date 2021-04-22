@@ -1,6 +1,8 @@
 <h1>F3 - Firebase Firestore Facade</h1>
 
 ![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)
+![npm](https://img.shields.io/npm/v/firebase-firestore-facade)
+![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
 
 <h3> 🚧  WIP 🚧 </h3>
 <h2>Installing</h2>
@@ -226,7 +228,7 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>✅ Add test to make sure firebasecobfig is loaded properly</li>
   <li>✅ Build Pipeline (Travis or GH Actions)</li>
   <li>🔲 Codecov</li>
-  <li>🔲 Badges</li>
+  <li>✅ Badges</li>
   <li>🔲 Dependabot automerge</li>
   <li>🔲 Confirm MVP works (test with F4)</li>
   <li>✅ Write README</li>
