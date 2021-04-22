@@ -8,4 +8,3 @@ export * from './FirestoreDate';
 export * from './FirestoreDateTranslator';
 export * from './IFirestoreType';
 export * from './ILocalType';
-
