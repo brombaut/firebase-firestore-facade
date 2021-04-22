@@ -14,7 +14,33 @@ export class FirestoreBase {
   private _db!: firebase.firestore.Firestore;
 
   constructor(firebaseConfig: FirebaseConfigurer) {
+    this.throwIfInvalidConfig(firebaseConfig);
     this._firebaseConfig = firebaseConfig;
+  }
+
+  private throwIfInvalidConfig(firebaseConfig: FirebaseConfigurer): void {
+    const invalidFields: string[] = [];
+    if (!firebaseConfig.apiKey) {
+      invalidFields.push('apiKey')
+    }
+    if (!firebaseConfig.authDomain) {
+      invalidFields.push('authDomain')
+    }
+    if (!firebaseConfig.projectId) {
+      invalidFields.push('projectId')
+    }
+    if (!firebaseConfig.storageBucket) {
+      invalidFields.push('storageBucket')
+    }
+    if (!firebaseConfig.messagingSenderId) {
+      invalidFields.push('messagingSenderId')
+    }
+    if (!firebaseConfig.appId) {
+      invalidFields.push('appId')
+    }
+    if (invalidFields.length > 0) {
+      throw new Error(`Invalid Firebase config fields: [${invalidFields.join(', ')}]`)
+    }
   }
 
   async init(): Promise<FirestoreBase> {

@@ -214,7 +214,8 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>✅ Write tests and implement functionality for CRUD</li>
   <li>✅ Use env vars to connect</li>
   <li>✅ Publish MVP to npm</li>
-
+  <li>✅  Add check to make sure firebasecobfig is loaded properly</li>
+  <li>✅  Add test to make sure firebasecobfig is loaded properly</li>
   <li>🔲 Build Pipeline (Travis or GH Actions)</li>
   <li>🔲 Codecov</li>
   <li>🔲 Badges</li>
