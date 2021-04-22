@@ -1,4 +1,4 @@
-import { firebaseConfig } from "../bookshelf/firebase.config";
+import { firebaseConfig } from '../bookshelf/firebase.config';
 import { FirestoreBase } from '../firestore/FirestoreBase';
 
 describe('FirestoreBase', () => {

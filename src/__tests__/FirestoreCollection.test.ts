@@ -1,3 +1,4 @@
+import { IFirestoreType } from './../firestore/IFirestoreType';
 import { FirestoreDateTranslator } from './../firestore/FirestoreDateTranslator';
 import { FirestoreBase } from '../firestore/FirestoreBase';
 import { FirestoreCollection } from '../firestore/FirestoreCollection';
@@ -8,13 +9,13 @@ import { Shelf } from '../bookshelf/Shelf';
 
 describe('FirestoreCollection', () => {
   let base: FirestoreBase;
-  let booksCollection: FirestoreCollection<FirestoreBook, Book>;
-  let mapper: (o: FirestoreBook) => Book;
+  let booksCollection: FirestoreCollection<Book>;
+  let mapper: (o: IFirestoreType) => Book;
 
   beforeAll(async () => {
     base = await new FirestoreBase(firebaseConfig).init();
-    mapper = (o: FirestoreBook) => new Book(o);
-    booksCollection = new FirestoreCollection<FirestoreBook, Book>(base, 'books', mapper);
+    mapper = (o: IFirestoreType) => new Book(o as FirestoreBook);
+    booksCollection = new FirestoreCollection<Book>(base, 'books', mapper);
   });
 
   afterAll(async () => {
@@ -33,6 +34,7 @@ describe('FirestoreCollection', () => {
   describe('Create, Read, Update, Delete', () => {
     let testingBookId: string | null = null;
     const testingBook: FirestoreBook = {
+      id: '',
       isbn13: 'my_isbn13',
       title: 'My Testing Book',
       shortTitle: 'Test Book',

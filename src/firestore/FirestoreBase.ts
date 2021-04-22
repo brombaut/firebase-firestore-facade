@@ -1,3 +1,4 @@
+import { IFirestoreType } from './IFirestoreType';
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import firebase from 'firebase/app';
@@ -5,7 +6,7 @@ import firebase from 'firebase/app';
 // Add the Firebase services that you want to use
 import 'firebase/auth';
 import 'firebase/firestore';
-import { FirebaseConfigurer } from "./FirebaseConfigurer";
+import { FirebaseConfigurer } from './FirebaseConfigurer';
 
 export class FirestoreBase {
   private _firebaseConfig: FirebaseConfigurer;
@@ -47,14 +48,13 @@ export class FirestoreBase {
     return cSnapshot;
   }
 
-  // TODO: Is this T needed?
-  async collectionSnapshotData<T>(collection: string): Promise<T[]> {
+  async collectionSnapshotData(collection: string): Promise<IFirestoreType[]> {
     const cSnapshot = await this.collectionSnapshot(collection);
-    const data: T[] = cSnapshot.docs.map((doc) => {
-      const result = ({
+    const data: IFirestoreType[] = cSnapshot.docs.map((doc) => {
+      const result = {
         id: doc.id,
         ...doc.data(),
-      } as unknown) as T;
+      };
       return result;
     });
     return data;

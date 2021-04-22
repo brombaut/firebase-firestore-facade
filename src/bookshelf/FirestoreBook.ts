@@ -1,8 +1,9 @@
+import { IFirestoreType } from './../firestore/IFirestoreType';
 import { FirestoreDate } from '../firestore/FirestoreDate';
 import { Shelf } from './Shelf';
 
-export interface FirestoreBook {
-  id?: string | null;
+export class FirestoreBook implements IFirestoreType {
+  id: string;
   isbn13: string;
   title: string;
   shortTitle: string;

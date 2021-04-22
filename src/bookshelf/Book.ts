@@ -1,8 +1,9 @@
+import { ILocalType } from './../firestore/ILocalType';
 import { FirestoreBook } from './FirestoreBook';
 import { Shelf } from './Shelf';
 import { FirestoreDateTranslator } from '../firestore/FirestoreDateTranslator';
 
-export class Book {
+export class Book implements ILocalType {
   private _id: string;
   private _isbn13: string;
   private _title: string;
@@ -40,6 +41,31 @@ export class Book {
       this._dateFinished = null;
     }
     this._rating = dto.rating;
+  }
+
+  toFirestoreType(): FirestoreBook {
+    let sDate = null;
+    if (this._dateStarted) {
+      sDate = new FirestoreDateTranslator().fromDate(this._dateStarted).toFirestoreDate();
+    }
+    let fDate = null;
+    if (this._dateFinished) {
+      fDate = new FirestoreDateTranslator().fromDate(this._dateFinished).toFirestoreDate();
+    }
+    return {
+      id: this._id,
+      isbn13: this._isbn13,
+      title: this._title,
+      shortTitle: this._shortTitle,
+      authors: this._authors,
+      numPages: this._numPages,
+      link: this._link,
+      shelf: this._shelf,
+      onPage: this._onPage,
+      dateStarted: sDate,
+      dateFinished: fDate,
+      rating: this._rating,
+    };
   }
 
   get id(): string {

@@ -1,6 +1,10 @@
-export interface F3Interfacer<FirebaseType, LocalType> {
+import { IFirestoreType } from './IFirestoreType';
+import { ILocalType } from './ILocalType';
+
+export interface F3Interfacer<LocalType> {
   get(): Promise<LocalType[]>;
-  put(t: LocalType): Promise<LocalType>;
-  post(t: FirebaseType): Promise<LocalType>;
-  delete(t: LocalType): Promise<void>;
+  getById(id: string): Promise<LocalType>;
+  put(t: ILocalType): Promise<LocalType>;
+  post(t: IFirestoreType): Promise<LocalType>;
+  delete(t: ILocalType): Promise<void>;
 }
