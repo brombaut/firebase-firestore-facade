@@ -1,7 +1,6 @@
 /lib
 /coverage
 
-firebase.config.ts
 
 *.pdf
 
