@@ -7,3 +7,5 @@ lib
 coverage
 # don't lint jest config file 
 jest.config.js
+
+README.md
