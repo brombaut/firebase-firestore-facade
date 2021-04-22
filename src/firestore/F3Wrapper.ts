@@ -54,15 +54,4 @@ export class F3Wrapper<LocalType> implements F3Interfacer<LocalType> {
     );
     return collection;
   }
-
-  // async connectToFirestore() {
-  //   const base = await new FirestoreBase(firebaseConfig).init();
-  //   const mapper: (o: FirestoreBook) => Book =
-  //     (o: FirestoreBook) => new Book(o);
-  //   const booksCollection: FirestoreCollection<FirestoreBook, Book> =
-  //     new FirestoreCollection<FirestoreBook, Book>(base, 'books', mapper);
-  //   const books = await booksCollection.get();
-  //   console.log(books);
-  //   await base.close();
-  // }
 }
