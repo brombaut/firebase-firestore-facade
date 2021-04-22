@@ -6,9 +6,15 @@
 npm i firebase-firestore-facade
 ```
 
-<h2>Recommended Usage</h2>
+<h2>Modules</h2>
 
 <h4><b>F3Interfacer</b></h4>
+
+<p>
+
+Main interface that is parameterized with the class that will be used to represent the records in the Firestore database (must implement ILocalType).
+
+</p>
 
 ```typescript
 interface F3Interfacer<LocalType> {
@@ -17,6 +23,43 @@ interface F3Interfacer<LocalType> {
   put(t: ILocalType): Promise<LocalType>;
   post(t: IFirestoreType): Promise<LocalType>;
   delete(t: ILocalType): Promise<void>;
+}
+```
+
+<h4><b>F3Wrapper</b></h4>
+
+<p>
+
+You can use this class directly, or create an additional wrapper class for your specific collection (see the bookshelf example below). Its constructor takes a Firebase configuration object which implements `FirebaseConfigurer` (see below), the `string` name of the collection you want to connect to, and a mapper function that takes an `IFirestoreType` and returns a `LocalType`.
+
+</p>
+
+```typescript
+class F3Wrapper<LocalType> implements F3Interfacer<LocalType> {
+  private _config: FirebaseConfigurer;
+  private _collection: string;
+  private _mapper: (o: IFirestoreType) => LocalType;
+  constructor(config: FirebaseConfigurer, collection: string, mapper: (o: IFirestoreType) => LocalType) {
+    this._config = config;
+    this._collection = collection;
+    this._mapper = mapper;
+  }
+
+  async get(): Promise<LocalType[]> {
+    ...
+  }
+  async getById(id: string): Promise<LocalType> {
+    ...
+  }
+  async put(t: ILocalType): Promise<LocalType> {
+    ...
+  }
+  async post(t: IFirestoreType): Promise<LocalType> {
+    ...
+  }
+  async delete(t: ILocalType): Promise<void> {
+    ...
+  }
 }
 ```
 
@@ -47,6 +90,28 @@ interface ILocalType {
   toFirestoreType(): IFirestoreType;
 }
 ```
+
+<h4><b>FirebaseConfigurer</b></h4>
+
+<p>
+
+See the [Firebase project configuration docs](https://firebase.google.com/docs/web/setup#config-object)
+
+</p>
+
+```typescript
+interface FirebaseConfigurer {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId: string;
+}
+```
+
+<h2>Recommended Usage</h2>
 
 <h3><b>Example - Bookshelf</b></h3>
 
@@ -112,7 +177,7 @@ class Book implements ILocalType {
 
 Finally, we create a class `F3Bookshelf`, which will act as our facade between the Firestore database and our frontend. This class implements the `F3Interfacer` interface parameterized with our `Book` type. We have an `F3Wrapper` attribute (again, parameterized with our `Book` type), a `string` of the name of our Firestore collection (in our case `books`), and a `(o: IFirestoreType) => Book` function, which is used to map our `FirestoreBook` objects to their associated `Book` objects.
 
-We instantiate the `F3Wrapper` in the constructor, including the `firebaseConfig` object, which must implement the `FirebaseConfigurer` interface (see below).
+We instantiate the `F3Wrapper` in the constructor, including the `firebaseConfig` object, which must implement the `FirebaseConfigurer` interface (see above).
 
 </p>
 
@@ -140,20 +205,6 @@ class F3Bookshelf implements F3Interfacer<Book> {
   async delete(t: Book): Promise<void> {
     return await this._f3.delete(t);
   }
-}
-```
-
-<h4><b>FirebaseConfigurer</b></h4>
-
-```typescript
-interface FirebaseConfigurer {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-  measurementId: string;
 }
 ```
 
