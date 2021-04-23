@@ -1,13 +1,11 @@
 <h1>F3 - Firebase Firestore Facade</h1>
 
-![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)
-![Codecov](https://img.shields.io/codecov/c/github/brombaut/firebase-firestore-facade)
-![npm](https://img.shields.io/npm/v/firebase-firestore-facade)
+[![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/brombaut/firebase-firestore-facade)](https://app.codecov.io/gh/brombaut/firebase-firestore-facade)
+[![npm](https://img.shields.io/npm/v/firebase-firestore-facade)](https://www.npmjs.com/package/firebase-firestore-facade)
 ![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
 
 <h2>Installing</h2>
-
-<hr>
 
 <p>
 
@@ -20,8 +18,6 @@ npm i firebase-firestore-facade
 ```
 
 <h2>Modules</h2>
-
-<hr>
 
 <h4><b>F3Interfacer</b></h4>
 
@@ -128,8 +124,6 @@ interface FirebaseConfigurer {
 
 <h2>Recommended Usage</h2>
 
-<hr>
-
 <h3><b>Example - Bookshelf</b></h3>
 
 <p>
@@ -234,11 +228,11 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>✅ Add check to make sure firebasecobfig is loaded properly</li>
   <li>✅ Add test to make sure firebasecobfig is loaded properly</li>
   <li>✅ Build Pipeline (Travis or GH Actions)</li>
-  <li>🔲 Codecov</li>
+  <li>✅ Codecov</li>
   <li>✅ Badges</li>
   <li>🔲 Dependabot automerge</li>
   <li>🔲 Confirm MVP works (test with F4)</li>
   <li>✅ Write README</li>
   <li>🔲 Update README with package description (also add it to package.json)</li>
-  <li>🔲 Link shields</li>
+  <li>✅ Link shields</li>
 </ul>
