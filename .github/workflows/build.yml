@@ -1,23 +1,17 @@
 name: CI
-
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request_target:
     branches: [ main ]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     environment: build_and_test_environment
-
     strategy:
       matrix:
         node-version: [15.x]
         # node-version: [10.x, 12.x, 14.x, 15.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
