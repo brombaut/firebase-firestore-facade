@@ -7,7 +7,7 @@
 
 <p>
 
-Facade package for the [Firebase](https://www.npmjs.com/package/firebase) package ([Official Docs](https://firebase.google.com/docs/firestore/)). Simlpifies the interface of the [Firestore](https://www.npmjs.com/package/@firebase/firestore) module to a CRUD app with minimal setup.
+Facade package for the [Firebase](https://www.npmjs.com/package/firebase) package ([Official Docs](https://firebase.google.com/docs/firestore/)). Simplifies the interface of the [Firestore](https://www.npmjs.com/package/@firebase/firestore) module to a CRUD app with minimal setup.
 
 </p>
 
