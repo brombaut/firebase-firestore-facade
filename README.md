@@ -141,7 +141,9 @@ We will use the idea of a bookshelf to demonstrate how to use F3. Lets say that 
 <h4><b>FirestoreBook</b></h4>
 
 <p>
+
 We create a `FirestoreBook` class that implements the `IFirestoreType` interface. This class has a `title` attribute, as well as the `id` attribute. Notice that, even though the records in the Firestore collection might not have an `id` attribute, they can be generated automatically by Firestore.
+
 </p>
 
 ```typescript
