@@ -238,4 +238,5 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>🔲 Dependabot automerge</li>
   <li>🔲 Confirm MVP works (test with F4)</li>
   <li>✅ Write README</li>
+  <li>🔲Update README with package description (also add it to package.json)</li>
 </ul>
