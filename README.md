@@ -1,6 +1,7 @@
 <h1>F3 - Firebase Firestore Facade</h1>
 
 ![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)
+![Codecov](https://img.shields.io/codecov/c/github/brombaut/firebase-firestore-facade)
 ![npm](https://img.shields.io/npm/v/firebase-firestore-facade)
 ![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
 
@@ -238,5 +239,6 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>🔲 Dependabot automerge</li>
   <li>🔲 Confirm MVP works (test with F4)</li>
   <li>✅ Write README</li>
-  <li>🔲Update README with package description (also add it to package.json)</li>
+  <li>🔲 Update README with package description (also add it to package.json)</li>
+  <li>🔲 Link shields</li>
 </ul>
