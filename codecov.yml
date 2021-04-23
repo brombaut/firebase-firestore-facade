@@ -1,0 +1,2 @@
+ignore:
+  - "src/bookshelf"  # ignore folders and all its contents
