@@ -5,6 +5,12 @@
 [![npm](https://img.shields.io/npm/v/firebase-firestore-facade)](https://www.npmjs.com/package/firebase-firestore-facade)
 ![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
 
+<p>
+
+Facade package for the [Firebase](https://www.npmjs.com/package/firebase) package ([Official Docs](https://firebase.google.com/docs/firestore/)). Simlpifies the interface of the [Firestore](https://www.npmjs.com/package/@firebase/firestore) module to a CRUD app with minimal setup.
+
+</p>
+
 <h2>Installing</h2>
 
 <p>
@@ -233,6 +239,6 @@ class F3Bookshelf implements F3Interfacer<Book> {
   <li>🔲 Dependabot automerge</li>
   <li>🔲 Confirm MVP works (test with F4)</li>
   <li>✅ Write README</li>
-  <li>🔲 Update README with package description (also add it to package.json)</li>
+  <li>✅ Update README with package description (also add it to package.json)</li>
   <li>✅ Link shields</li>
 </ul>
