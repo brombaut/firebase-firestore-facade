@@ -1,3 +1,4 @@
+import { FirebaseAuthentication } from "./FirebaseAuthentication";
 export interface FirebaseConfigurer {
   apiKey: string;
   authDomain: string;
@@ -6,4 +7,5 @@ export interface FirebaseConfigurer {
   messagingSenderId: string;
   appId: string;
   measurementId: string;
+  auth?: FirebaseAuthentication;
 }

@@ -10,6 +10,10 @@ const firebaseConfig: FirebaseConfigurer = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID || '',
   appId: process.env.APP_ID || '',
   measurementId: process.env.MEASUREMENT_ID || '',
+  auth: {
+    email: process.env.TEST_USER_EMAIL || '',
+    password: process.env.TEST_USER_PASSWORD || '',
+  }
 };
 
 export { firebaseConfig };

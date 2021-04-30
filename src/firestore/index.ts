@@ -2,6 +2,7 @@
 export * from './F3Interfacer';
 export * from './F3Wrapper';
 export * from './FirebaseConfigurer';
+export * from './FirebaseAuthentication';
 export * from './FirestoreBase';
 export * from './FirestoreCollection';
 export * from './FirestoreDate';

@@ -1,3 +1,4 @@
+import { FirebaseAuthentication } from "./FirebaseAuthentication";
 import { IFirestoreType } from './IFirestoreType';
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
@@ -12,10 +13,14 @@ export class FirestoreBase {
   private _firebaseConfig: FirebaseConfigurer;
   private _app!: firebase.app.App;
   private _db!: firebase.firestore.Firestore;
+  private _authentication: FirebaseAuthentication | undefined;
 
   constructor(firebaseConfig: FirebaseConfigurer) {
     this.throwIfInvalidConfig(firebaseConfig);
     this._firebaseConfig = firebaseConfig;
+    if (firebaseConfig.auth) {
+      this._authentication = firebaseConfig.auth;
+    }
   }
 
   private throwIfInvalidConfig(firebaseConfig: FirebaseConfigurer): void {
@@ -47,6 +52,7 @@ export class FirestoreBase {
     await this.close();
     this.initApp();
     this.initFirestore();
+    await this.initAuthIfNecessary();
     return this;
   }
 
@@ -56,6 +62,15 @@ export class FirestoreBase {
 
   private initFirestore(): void {
     this._db = firebase.firestore();
+  }
+
+  private async initAuthIfNecessary(): Promise<void> {
+    if (this._authentication) {
+      await firebase.auth().signInWithEmailAndPassword(
+        this._authentication.email, this._authentication.password
+      )
+    }
+    return Promise.resolve();
   }
 
   db(): firebase.firestore.Firestore {
