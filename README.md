@@ -126,6 +126,12 @@ interface FirebaseConfigurer {
   messagingSenderId: string;
   appId: string;
   measurementId: string;
+  auth?: FirebaseAuthentication;
+}
+
+interface FirebaseAuthentication {
+  email: string;
+  password: string;
 }
 ```
 
@@ -227,21 +233,3 @@ class F3Bookshelf implements F3Interfacer<Book> {
   }
 }
 ```
-
-<h2>Tasks</h2>
-<ul>
-  <li>✅ Connect to example books firestore</li>
-  <li>✅ Write tests and implement functionality for CRUD</li>
-  <li>✅ Use env vars to connect</li>
-  <li>✅ Publish MVP to npm</li>
-  <li>✅ Add check to make sure firebasecobfig is loaded properly</li>
-  <li>✅ Add test to make sure firebasecobfig is loaded properly</li>
-  <li>✅ Build Pipeline (Travis or GH Actions)</li>
-  <li>✅ Codecov</li>
-  <li>✅ Badges</li>
-  <li>🔲 Dependabot automerge</li>
-  <li>🔲 Confirm MVP works (test with F4)</li>
-  <li>✅ Write README</li>
-  <li>✅ Update README with package description (also add it to package.json)</li>
-  <li>✅ Link shields</li>
-</ul>
