@@ -13,7 +13,7 @@ const firebaseConfig: FirebaseConfigurer = {
   auth: {
     email: process.env.TEST_USER_EMAIL || '',
     password: process.env.TEST_USER_PASSWORD || '',
-  }
+  },
 };
 
 export { firebaseConfig };

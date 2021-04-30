@@ -1,4 +1,4 @@
-import { FirebaseAuthentication } from "./FirebaseAuthentication";
+import { FirebaseAuthentication } from './FirebaseAuthentication';
 import { IFirestoreType } from './IFirestoreType';
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
@@ -66,9 +66,7 @@ export class FirestoreBase {
 
   private async initAuthIfNecessary(): Promise<void> {
     if (this._authentication) {
-      await firebase.auth().signInWithEmailAndPassword(
-        this._authentication.email, this._authentication.password
-      )
+      await firebase.auth().signInWithEmailAndPassword(this._authentication.email, this._authentication.password);
     }
     return Promise.resolve();
   }

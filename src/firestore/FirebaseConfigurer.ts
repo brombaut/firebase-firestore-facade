@@ -1,4 +1,4 @@
-import { FirebaseAuthentication } from "./FirebaseAuthentication";
+import { FirebaseAuthentication } from './FirebaseAuthentication';
 export interface FirebaseConfigurer {
   apiKey: string;
   authDomain: string;
