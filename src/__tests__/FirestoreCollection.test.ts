@@ -35,6 +35,7 @@ describe('FirestoreCollection', () => {
     let testingBookId: string | null = null;
     const testingBook: FirestoreBook = {
       id: '',
+      goodreads_review_id: '12345678',
       isbn13: 'my_isbn13',
       title: 'My Testing Book',
       shortTitle: 'Test Book',

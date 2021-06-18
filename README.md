@@ -36,11 +36,13 @@ Main interface that is parameterized with the class that will be used to represe
 
 ```typescript
 interface F3Interfacer<LocalType> {
+  init(): Promise<F3Interfacer<LocalType>>;
   get(): Promise<LocalType[]>;
   getById(id: string): Promise<LocalType>;
   put(t: ILocalType): Promise<LocalType>;
   post(t: IFirestoreType): Promise<LocalType>;
   delete(t: ILocalType): Promise<void>;
+  closeConnection(): Promise<void>;
 }
 ```
 
@@ -55,12 +57,19 @@ You can use this class directly, or create an additional wrapper class for your 
 ```typescript
 class F3Wrapper<LocalType> implements F3Interfacer<LocalType> {
   private _config: FirebaseConfigurer;
-  private _collection: string;
+  private _collectionName: string;
   private _mapper: (o: IFirestoreType) => LocalType;
+  private _collection!: FirestoreCollection<LocalType>;
   constructor(config: FirebaseConfigurer, collection: string, mapper: (o: IFirestoreType) => LocalType) {
     this._config = config;
-    this._collection = collection;
+    this._collectionName = collectionName;
     this._mapper = mapper;
+    return this;
+  }
+
+  async init(): Promise<F3Wrapper<LocalType>> {
+    ...
+    return this;
   }
 
   async get(): Promise<LocalType[]> {
@@ -76,6 +85,9 @@ class F3Wrapper<LocalType> implements F3Interfacer<LocalType> {
     ...
   }
   async delete(t: ILocalType): Promise<void> {
+    ...
+  }
+  async closeConnection(): Promise<void> {
     ...
   }
 }
@@ -209,12 +221,17 @@ We instantiate the `F3Wrapper` in the constructor, including the `firebaseConfig
 
 ```typescript
 class F3Bookshelf implements F3Interfacer<Book> {
-  private _f3: F3Wrapper<Book>;
-  private _collection = 'books';
+  private _f3!: F3Wrapper<Book>;
+  private _firebaseConfig: FirebaseConfigurer;
+  private _collection = 'books_prod';
   private _mapper: (o: IFirestoreType) => Book = (o: IFirestoreType) => new Book(o as FirestoreBook);
 
-  constructor() {
-    this._f3 = new F3Wrapper<Book>(firebaseConfig, this._collection, this._mapper);
+  constructor(firebaseConfig: FirebaseConfigurer) {
+    this._firebaseConfig = firebaseConfig;
+  }
+  async init(): Promise<F3Bookshelf> {
+    this._f3 = await new F3Wrapper<Book>(this._firebaseConfig, this._collection, this._mapper).init();
+    return this;
   }
   async get(): Promise<Book[]> {
     return await this._f3.get();
@@ -230,6 +247,9 @@ class F3Bookshelf implements F3Interfacer<Book> {
   }
   async delete(t: Book): Promise<void> {
     return await this._f3.delete(t);
+  }
+  async closeConnection(): Promise<void> {
+    await this._f3.closeConnection();
   }
 }
 ```

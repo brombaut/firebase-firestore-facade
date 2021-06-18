@@ -15,7 +15,11 @@ describe('F3Wrapper', () => {
   let f3: F3Wrapper<Book>;
 
   beforeAll(async () => {
-    f3 = new F3Wrapper<Book>(config, collection, mapper);
+    f3 = await new F3Wrapper<Book>(config, collection, mapper).init();
+  });
+
+  afterAll(async () => {
+    await f3.closeConnection();
   });
 
   it('instantiates', () => {
@@ -41,6 +45,7 @@ describe('F3Wrapper', () => {
     let testingBookId: string | null = null;
     const testingBook: FirestoreBook = {
       id: '',
+      goodreads_review_id: '12345678',
       isbn13: 'my_isbn13',
       title: 'My Testing Book',
       shortTitle: 'Test Book',
