@@ -20,11 +20,7 @@ export class F3Wrapper<LocalType> implements F3Interfacer<LocalType> {
 
   async init(): Promise<F3Wrapper<LocalType>> {
     const base = await new FirestoreBase(this._config).init();
-    this._collection= new FirestoreCollection<LocalType>(
-      base,
-      this._collectionName,
-      this._mapper,
-    );
+    this._collection = new FirestoreCollection<LocalType>(base, this._collectionName, this._mapper);
     return this;
   }
 

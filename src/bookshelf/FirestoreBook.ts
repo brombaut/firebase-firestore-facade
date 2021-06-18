@@ -17,4 +17,3 @@ export class FirestoreBook implements IFirestoreType {
   dateFinished!: FirestoreDate | null;
   rating!: number | null;
 }
-

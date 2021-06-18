@@ -3,7 +3,7 @@ import { F3Wrapper } from './../firestore/F3Wrapper';
 import { F3Interfacer } from './../firestore/F3Interfacer';
 import { Book } from './Book';
 import { FirestoreBook } from './FirestoreBook';
-import { FirebaseConfigurer } from "../firestore/FirebaseConfigurer";
+import { FirebaseConfigurer } from '../firestore/FirebaseConfigurer';
 
 export class F3Bookshelf implements F3Interfacer<Book> {
   private _f3!: F3Wrapper<Book>;

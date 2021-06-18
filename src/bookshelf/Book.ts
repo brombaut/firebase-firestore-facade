@@ -105,7 +105,7 @@ export class Book implements ILocalType {
     return this._onPage;
   }
   set onPage(x: number | null) {
-    this._onPage = x
+    this._onPage = x;
   }
   get dateStarted(): Date | null {
     return this._dateStarted;
@@ -114,7 +114,7 @@ export class Book implements ILocalType {
     if (!this.dateStarted) {
       return '';
     }
-    return `${this.dateStarted.getDate()}/${this.dateStarted.getMonth()+1}/${this.dateStarted.getFullYear()}`
+    return `${this.dateStarted.getDate()}/${this.dateStarted.getMonth() + 1}/${this.dateStarted.getFullYear()}`;
   }
   get dateFinished(): Date | null {
     return this._dateFinished;
@@ -123,7 +123,7 @@ export class Book implements ILocalType {
     if (!this.dateFinished) {
       return '';
     }
-    return `${this.dateFinished.getDate()}/${this.dateFinished.getMonth()+1}/${this.dateFinished.getFullYear()}`
+    return `${this.dateFinished.getDate()}/${this.dateFinished.getMonth() + 1}/${this.dateFinished.getFullYear()}`;
   }
   get rating(): number | null {
     return this._rating;
@@ -193,5 +193,4 @@ export class Book implements ILocalType {
       'rating',
     ];
   }
-
 }
