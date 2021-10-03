@@ -6,7 +6,7 @@ on:
   pull_request_target:
     branches: [main]
 jobs:
-  build:
+  build_lint_format_test:
     runs-on: ubuntu-latest
     environment: build_and_test_environment
     strategy:
