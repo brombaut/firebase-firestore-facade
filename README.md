@@ -3,8 +3,6 @@
 [![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/brombaut/firebase-firestore-facade)](https://app.codecov.io/gh/brombaut/firebase-firestore-facade)
 [![npm](https://img.shields.io/npm/v/firebase-firestore-facade)](https://www.npmjs.com/package/firebase-firestore-facade)
-![David](https://img.shields.io/david/brombaut/firebase-firestore-facade)
-![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/firebase-firestore-facade)
 
 <p>
 
