@@ -10,8 +10,9 @@
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "jest --config jest.config.js",
     "test-watch": "jest --config jest.config.js --watch",
+    "test-coverage": "jest --config jest.config.js --coverage",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run test-coverage && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
