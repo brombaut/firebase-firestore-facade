@@ -1,0 +1,29 @@
+name: Publish new version to NPM
+on:
+  workflow_dispatch:
+    inputs:
+      version_update_type:
+        description: 'SemVer update version type (patch, minor, or major)'
+        required: true
+        default: 'patch'
+
+jobs:
+  publish_to_npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git config --global user.name 'Ben Rombaut'
+      - run: git config --global user.email 'rombaut.benj@gmail.com'
+      - run: npm ci
+      - run: npm version ${{ github.event.inputs.version_update_type }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
