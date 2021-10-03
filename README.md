@@ -1,6 +1,6 @@
 <h1>F3 - Firebase Firestore Facade</h1>
 
-[![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml/badge.svg)](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build.yml)
+[![CI](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/brombaut/firebase-firestore-facade/actions/workflows/build_and_test.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/brombaut/firebase-firestore-facade)](https://app.codecov.io/gh/brombaut/firebase-firestore-facade)
 [![npm](https://img.shields.io/npm/v/firebase-firestore-facade)](https://www.npmjs.com/package/firebase-firestore-facade)
 
