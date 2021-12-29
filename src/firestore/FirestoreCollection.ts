@@ -41,7 +41,7 @@ export class FirestoreCollection<LocalType> {
     if (record.id) {
       throw new Error('Cannot add a record with a non-null id');
     }
-    const raw = record as unknown as Record<string, unknown>;
+    const raw = (record as unknown) as Record<string, unknown>;
     if (Object.prototype.hasOwnProperty.call(raw, 'id')) {
       delete (raw as { id?: string }).id;
     }

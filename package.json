@@ -1,6 +1,6 @@
 {
   "name": "firebase-firestore-facade",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A facade package for Firebase Firestores",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
