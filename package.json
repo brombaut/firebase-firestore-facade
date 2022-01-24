@@ -45,6 +45,6 @@
   ],
   "dependencies": {
     "dotenv": "9.0.1",
-    "firebase": "8.4.0"
+    "firebase": "9.6.4"
   }
 }
