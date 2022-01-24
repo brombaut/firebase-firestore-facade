@@ -44,7 +44,7 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "dotenv": "9.0.1",
+    "dotenv": "14.2.0",
     "firebase": "8.4.0"
   }
 }
