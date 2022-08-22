@@ -36,11 +36,6 @@ export class F3Bookshelf implements F3Interfacer<Book> {
     return await this._f3.put(t);
   }
   async post(t: FirestoreBook): Promise<Book> {
-    const existingBooks = await this.get();
-    const bookISBN13Exists = existingBooks.some((b: Book) => b.isbn13 === t.isbn13);
-    if (bookISBN13Exists) {
-      throw new Error(`Book ISBN13 exists: ${t.isbn13}`);
-    }
     return await this._f3.post(t);
   }
   async delete(t: Book): Promise<void> {
